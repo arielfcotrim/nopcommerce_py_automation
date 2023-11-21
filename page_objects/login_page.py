@@ -1,7 +1,10 @@
+from selenium import webdriver
+
+
 class LoginPage:
     text_box_username_id = "Email"
     text_box_password_id = "Password"
-    button_login_xpath = "//input[@value='Log in']"
+    button_login_xpath = "//input[@class='button-1 login-button']"
     button_logout_linktext = "Logout"
 
     def __init__(self, driver):
