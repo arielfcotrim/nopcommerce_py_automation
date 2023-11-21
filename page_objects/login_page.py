@@ -1,6 +1,3 @@
-from selenium import webdriver
-
-
 # Define a class for the login page
 class LoginPage:
     # Define class-level variables to store element identifiers
