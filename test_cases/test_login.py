@@ -11,8 +11,8 @@ class TestLogIn:
     password = os.environ.get('PASSWORD')
     # password = "admin"
 
-    def test_home_page_title(self):
-        self.driver = webdriver.Chrome()
+    def test_home_page_title(self, setup):
+        self.driver = setup
         self.driver.get(self.baseURL)
         expected_title = "Your store. Login"
         actual_title = self.driver.title
@@ -24,8 +24,8 @@ class TestLogIn:
         else:
             assert False
 
-    def test_log_in(self):
-        self.driver = webdriver.Chrome()
+    def test_log_in(self, setup):
+        self.driver = setup
         self.driver.get(self.baseURL)
         self.login_page = LogInPage(self.driver)
         self.login_page.set_username(self.username)
