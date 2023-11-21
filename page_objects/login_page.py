@@ -2,7 +2,7 @@ class LoginPage:
     text_box_username_id = "Email"
     text_box_password_id = "Password"
     button_login_xpath = "//input[@value='Log in']"
-    link_logout_button = "Logout"
+    button_logout_linktext = "Logout"
 
     def __init__(self, driver):
         self.driver = driver
@@ -19,4 +19,4 @@ class LoginPage:
         self.driver.find_element_by_xpath(self.button_login_xpath).click()
 
     def click_logout_button(self):
-        self.driver.find_element_by_link_text(self.link_logout_button).click()
+        self.driver.find_element_by_link_text(self.button_logout_linktext).click()
