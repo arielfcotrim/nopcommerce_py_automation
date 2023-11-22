@@ -19,7 +19,9 @@ class TestLogIn:
             assert True
 
         else:
-            self.driver.save_screenshot(".\\screenshots\\" + "test_home_page_title" + ".png")
+            self.driver.save_screenshot(
+                "C:\\GitHub\\nopcommerce_py_automation\\screenshots\\" +
+                "test_home_page_title" + ".png")
             assert False
 
     def test_log_in(self, setup):
@@ -38,5 +40,7 @@ class TestLogIn:
             assert True
 
         else:
-            self.driver.save_screenshot(".\\screenshots\\" + "test_log_in" + ".png")
+            self.driver.save_screenshot(
+                "C:\\GitHub\\nopcommerce_py_automation\\screenshots\\" +
+                "test_log_in" + ".png")
             assert False
