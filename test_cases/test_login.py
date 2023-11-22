@@ -16,7 +16,6 @@ class TestLogIn:
         self.driver.get(self.baseURL)
         expected_title = "Your store. Login"
         actual_title = self.driver.title
-        self.driver.quit()
 
         if actual_title == expected_title:
             assert True
@@ -24,6 +23,8 @@ class TestLogIn:
         else:
             self.driver.save_screenshot(".\\Screenshots\\" + "test_home_page_title" + ".png")
             assert False
+
+        self.driver.quit()
 
     def test_log_in(self, setup):
         self.driver = setup
