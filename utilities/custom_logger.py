@@ -5,7 +5,8 @@ class LogGeneration:
     @staticmethod
     def log_gen():
         logging.basicConfig(
-            filename='logs/automation.log',
+            filename='C:\\GitHub\\nopcommerce_py_automation\\logs\\' +
+                     'automation.log',
             format='%(asctime)s : %(levelname)s : %(message)s',
             datefmt='%Y-%m-%d %H:%M:%S %p'
         )

@@ -13,6 +13,8 @@ class TestLogIn:
     logger = LogGeneration.log_gen()
 
     def test_home_page_title(self, setup):
+        self.logger.info("******** || Test_001_Login || ********")
+        self.logger.info("******** || Verifying Home Page Title || ********")
         self.driver = setup
         self.driver.get(self.base_url)
 
@@ -20,15 +22,18 @@ class TestLogIn:
         actual_title = self.driver.title
 
         if actual_title == expected_title:
+            self.logger.info("******** || Home Page Title Test: PASSED || ********")
             assert True
 
         else:
             self.driver.save_screenshot(
                 "C:\\GitHub\\nopcommerce_py_automation\\screenshots\\" +
                 "test_home_page_title" + ".png")
+            self.logger.error("******** || ERROR! Home Page Title Test: FAILED || ********")
             assert False
 
     def test_log_in(self, setup):
+        self.logger.info("******** || Attempting to Log-in... || ********")
         self.driver = setup
         self.driver.get(self.base_url)
 
@@ -43,10 +48,12 @@ class TestLogIn:
         actual_title = self.driver.title
 
         if actual_title == expected_title:
+            self.logger.info("******** || Log-in Test: PASSED || ********")
             assert True
 
         else:
             self.driver.save_screenshot(
                 "C:\\GitHub\\nopcommerce_py_automation\\screenshots\\" +
                 "test_log_in" + ".png")
+            self.logger.error("******** || ERROR! Log-in Test: FAILED || ********")
             assert False
