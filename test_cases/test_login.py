@@ -4,7 +4,7 @@ from page_objects.login_page import LogInPage
 
 
 class TestLogIn:
-    baseURL = "https://admin-demo.nopcommerce.com/"
+    base_url = "https://admin-demo.nopcommerce.com/"
     username = os.environ.get('USERNAME')
     # username = "admin@yourstore.com"
     password = os.environ.get('PASSWORD')
@@ -12,7 +12,7 @@ class TestLogIn:
 
     def test_home_page_title(self, setup):
         self.driver = setup
-        self.driver.get(self.baseURL)
+        self.driver.get(self.base_url)
 
         expected_title = "Your store. Login"
         actual_title = self.driver.title
@@ -26,7 +26,7 @@ class TestLogIn:
 
     def test_log_in(self, setup):
         self.driver = setup
-        self.driver.get(self.baseURL)
+        self.driver.get(self.base_url)
 
         self.login_page = LogInPage(self.driver)
         self.login_page.set_username(self.username)
