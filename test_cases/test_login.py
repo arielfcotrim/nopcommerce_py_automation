@@ -2,7 +2,7 @@ import os
 import pytest
 from selenium import webdriver
 from page_objects.login_page import LogInPage
-import config_tests
+# from . import config_tests
 
 
 class TestLogIn:
@@ -11,7 +11,7 @@ class TestLogIn:
     # username = "admin@yourstore.com"
     password = os.environ.get('PASSWORD')
     # password = "admin"
-    setup = config_tests.setup()
+    # setup = config_tests.setup()
 
     def test_home_page_title(self, setup):
         self.driver = setup
