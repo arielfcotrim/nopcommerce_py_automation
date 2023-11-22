@@ -43,7 +43,6 @@ class TestLogIn:
         self.login_page.click_login_button()
 
         expected_title = "Dashboard / nopCommerce administration"
-        WebDriverWait(self.driver, 10).until(EC.title_is(expected_title))
         actual_title = self.driver.title
 
         if actual_title == expected_title:
