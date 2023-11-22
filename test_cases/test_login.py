@@ -1,12 +1,19 @@
 import pytest
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 from page_objects.login_page import LoginPage
 from utilities.read_properties import ReadConfig
+from utilities.custom_logger import LogGeneration
 
 
 class TestLogIn:
     base_url = ReadConfig.get_url()
     username = ReadConfig.get_username()
     password = ReadConfig.get_password()
+
+    logger = LogGeneration.log_gen()
 
     def test_home_page_title(self, setup):
         self.driver = setup
@@ -28,12 +35,15 @@ class TestLogIn:
         self.driver = setup
         self.driver.get(self.base_url)
 
+        WebDriverWait(self.driver, 10)
+
         self.login_page = LoginPage(self.driver)
         self.login_page.set_username(self.username)
         self.login_page.set_password(self.password)
         self.login_page.click_login_button()
 
         expected_title = "Dashboard / nopCommerce administration"
+        WebDriverWait(self.driver, 10).until(EC.title_is(expected_title))
         actual_title = self.driver.title
 
         if actual_title == expected_title:
