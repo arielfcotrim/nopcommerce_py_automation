@@ -22,6 +22,7 @@ class TestLogIn:
             assert True
 
         else:
+            self.driver.save_screenshot(".\\Screenshots\\" + "test_home_page_title" + ".png")
             assert False
 
     def test_log_in(self, setup):
