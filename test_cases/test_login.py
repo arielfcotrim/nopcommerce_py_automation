@@ -1,14 +1,12 @@
-import os
 import pytest
-from page_objects.login_page import LogInPage
+from page_objects.login_page import LoginPage
+from utilities.read_properties import ReadConfig
 
 
 class TestLogIn:
-    base_url = "https://admin-demo.nopcommerce.com/"
-    username = os.environ.get('USERNAME')
-    # username = "admin@yourstore.com"
-    password = os.environ.get('PASSWORD')
-    # password = "admin"
+    base_url = ReadConfig.get_url()
+    username = ReadConfig.get_username()
+    password = ReadConfig.get_password()
 
     def test_home_page_title(self, setup):
         self.driver = setup
@@ -28,7 +26,7 @@ class TestLogIn:
         self.driver = setup
         self.driver.get(self.base_url)
 
-        self.login_page = LogInPage(self.driver)
+        self.login_page = LoginPage(self.driver)
         self.login_page.set_username(self.username)
         self.login_page.set_password(self.password)
         self.login_page.click_login_button()

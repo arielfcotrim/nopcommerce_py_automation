@@ -7,6 +7,5 @@ from webdriver_manager.chrome import ChromeDriverManager
 @pytest.fixture()
 def setup():
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-
     yield driver
     driver.quit()

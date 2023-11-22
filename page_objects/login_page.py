@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 
 
 # Define a class for the login page
-class LogInPage:
+class LoginPage:
     # Define class-level variables to store element identifiers
     text_box_username_id = "Email"  # ID of the username input field
     text_box_password_id = "Password"  # ID of the password input field
