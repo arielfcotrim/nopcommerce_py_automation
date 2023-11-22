@@ -2,7 +2,6 @@ import os
 import pytest
 from selenium import webdriver
 from page_objects.login_page import LogInPage
-# from . import config_tests
 
 
 class TestLogIn:
