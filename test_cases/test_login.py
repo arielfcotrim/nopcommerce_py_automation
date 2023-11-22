@@ -1,16 +1,14 @@
 import os
 import pytest
-from selenium import webdriver
 from page_objects.login_page import LogInPage
 
 
 class TestLogIn:
-    baseURL = "https://admin.demo.nopcommerce.com/"
+    baseURL = "https://admin-demo.nopcommerce.com/"
     username = os.environ.get('USERNAME')
     # username = "admin@yourstore.com"
     password = os.environ.get('PASSWORD')
     # password = "admin"
-    # setup = config_tests.setup()
 
     def test_home_page_title(self, setup):
         self.driver = setup
@@ -23,10 +21,8 @@ class TestLogIn:
             assert True
 
         else:
-            self.driver.save_screenshot(".\\Screenshots\\" + "test_home_page_title" + ".png")
+            self.driver.save_screenshot(".\\screenshots\\" + "test_home_page_title" + ".png")
             assert False
-
-        self.driver.quit()
 
     def test_log_in(self, setup):
         self.driver = setup
@@ -44,7 +40,5 @@ class TestLogIn:
             assert True
 
         else:
-            self.driver.save_screenshot(".\\Screenshots\\" + "test_log_in" + ".png")
+            self.driver.save_screenshot(".\\screenshots\\" + "test_log_in" + ".png")
             assert False
-
-        self.driver.quit()
