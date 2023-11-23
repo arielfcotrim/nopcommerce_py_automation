@@ -3,6 +3,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from page_objects.login_page import LoginPage
 from utilities.read_properties import ReadConfig
 from utilities.custom_logger import LogGeneration
+from utilities.media_manager import MediaManager
 
 
 class TestLogIn:
@@ -26,9 +27,7 @@ class TestLogIn:
             assert True
 
         else:
-            self.driver.save_screenshot(
-                "C:\\GitHub\\nopcommerce_py_automation\\screenshots\\" +
-                "test_home_page_title" + ".png")
+            MediaManager.save_screenshot(self.driver, 'test_home_page_title')
             self.logger.error("******** || ERROR! Home Page Title Test: FAILED || ********")
             assert False
 
@@ -52,8 +51,6 @@ class TestLogIn:
             assert True
 
         else:
-            self.driver.save_screenshot(
-                "C:\\GitHub\\nopcommerce_py_automation\\screenshots\\" +
-                "test_log_in" + ".png")
+            MediaManager.save_screenshot(self.driver, 'test_log_in')
             self.logger.error("******** || ERROR! Log-in Test: FAILED || ********")
             assert False
