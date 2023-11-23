@@ -15,10 +15,10 @@ class TestLogIn:
     # logger = LogGeneration.log_gen()
     logger = CustomLogger.configure_logger(__name__, level=logging.INFO)
 
-    def test_home_page_title(self, setup):
+    def test_home_page_title(self, driver_setup):
         self.logger.info('**** Test_001_Login ****')
         self.logger.info('Verifying Home Page Title')
-        self.driver = setup
+        self.driver = driver_setup
         self.driver.get(self.base_url)
 
         expected_title = "Your store. Login"
@@ -33,9 +33,9 @@ class TestLogIn:
             self.logger.error('Test_001: Home Page Title == FAILED')
             assert False
 
-    def test_log_in(self, setup):
+    def test_log_in(self, driver_setup):
         self.logger.info('Attempting to Log-in...')
-        self.driver = setup
+        self.driver = driver_setup
         self.driver.get(self.base_url)
 
         WebDriverWait(self.driver, 10)
