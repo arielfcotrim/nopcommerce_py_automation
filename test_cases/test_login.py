@@ -16,8 +16,8 @@ class TestLogIn:
     logger = CustomLogger.configure_logger(__name__, level=logging.INFO)
 
     def test_home_page_title(self, setup):
-        self.logger.info("******** || Test_001_Login || ********")
-        self.logger.info("******** || Verifying Home Page Title || ********")
+        self.logger.info('Test_001_Login')
+        self.logger.info('Verifying Home Page Title')
         self.driver = setup
         self.driver.get(self.base_url)
 
@@ -25,16 +25,16 @@ class TestLogIn:
         actual_title = self.driver.title
 
         if actual_title == expected_title:
-            self.logger.info("******** || Home Page Title Test: PASSED || ********")
+            self.logger.info('Test_001: Home Page Title == PASSED')
             assert True
 
         else:
             MediaManager.save_screenshot(self.driver, 'test_home_page_title')
-            self.logger.error("******** || ERROR! Home Page Title Test: FAILED || ********")
+            self.logger.error('Test_001: Home Page Title == FAILED')
             assert False
 
     def test_log_in(self, setup):
-        self.logger.info("******** || Attempting to Log-in... || ********")
+        self.logger.info('Attempting to Log-in...')
         self.driver = setup
         self.driver.get(self.base_url)
 
@@ -49,10 +49,10 @@ class TestLogIn:
         actual_title = self.driver.title
 
         if actual_title == expected_title:
-            self.logger.info("******** || Log-in Test: PASSED || ********")
+            self.logger.info('Test_001: Login == PASSED')
             assert True
 
         else:
             MediaManager.save_screenshot(self.driver, 'test_log_in')
-            self.logger.error("******** || ERROR! Log-in Test: FAILED || ********")
+            self.logger.error('Test_001: Login == FAILED')
             assert False
