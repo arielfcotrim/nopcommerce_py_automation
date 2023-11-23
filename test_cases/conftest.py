@@ -27,7 +27,7 @@ def driver_setup(browser):
         driver.quit()
 
 
-def pytest_addoption(parser):
+def pytest_add_option(parser):
     parser.addoption("--browser", action="store", default="chrome")
 
 
