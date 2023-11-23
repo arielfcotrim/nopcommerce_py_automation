@@ -2,7 +2,8 @@ import pytest
 from selenium.webdriver.support.ui import WebDriverWait
 from page_objects.login_page import LoginPage
 from utilities.read_properties import ReadConfig
-from utilities.custom_logger import LogGeneration
+# from utilities.custom_logger import LogGeneration
+from utilities.custom_logger import configure_logger
 from utilities.media_manager import MediaManager
 
 
@@ -11,7 +12,8 @@ class TestLogIn:
     username = ReadConfig.get_username()
     password = ReadConfig.get_password()
 
-    logger = LogGeneration.log_gen()
+    # logger = LogGeneration.log_gen()
+    logger = configure_logger(__name__)
 
     def test_home_page_title(self, setup):
         self.logger.info("******** || Test_001_Login || ********")
