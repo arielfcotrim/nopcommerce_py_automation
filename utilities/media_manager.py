@@ -1,4 +1,3 @@
-import os
 from selenium.webdriver.remote.webdriver import WebDriver
 from utilities.dir_path_manager import DirPathManager as Path
 
