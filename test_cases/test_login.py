@@ -16,7 +16,7 @@ class TestLogIn:
     logger = CustomLogger.configure_logger(__name__, level=logging.INFO)
 
     def test_home_page_title(self, setup):
-        self.logger.info('Test_001_Login')
+        self.logger.info('**** Test_001_Login ****')
         self.logger.info('Verifying Home Page Title')
         self.driver = setup
         self.driver.get(self.base_url)
