@@ -1,12 +1,13 @@
 import logging
+from utilities.dir_path_manager import DirPathManager as Path
 
 
 class LogGeneration:
     @staticmethod
     def log_gen():
         logging.basicConfig(
-            filename='C:\\GitHub\\nopcommerce_py_automation\\logs\\' +
-                     'automation.log',
+            filename=Path.get_relative_path('logs', 'automation.log'),
+            level=logging.INFO,
             format='%(asctime)s : %(levelname)s : %(message)s',
             datefmt='%Y-%m-%d %H:%M:%S %p'
         )

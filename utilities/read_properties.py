@@ -1,8 +1,9 @@
 import configparser
+from utilities.dir_path_manager import DirPathManager as Path
 
 
 config = configparser.RawConfigParser()
-config.read('C:\\GitHub\\nopcommerce_py_automation\\configurations\\config.ini')
+config.read(Path.get_relative_path('configurations', 'config.ini'))
 
 
 class ReadConfig:
