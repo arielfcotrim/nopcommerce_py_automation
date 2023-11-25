@@ -5,13 +5,13 @@ from page_objects.login_page import LoginPage
 from utilities.read_properties import ReadConfig
 from utilities.custom_logger import CustomLogger
 from utilities.screen_cap_manager import ScreenCapture
-from utilities.constants import PageTitles as title
+from utilities.constants import PageTitles as Titles
 
 
 class TestLogin:
-    base_url = ReadConfig.get_url()
-    username = ReadConfig.get_username()
-    password = ReadConfig.get_password()
+    base_url = ReadConfig.get_config_value('basic access data', 'base_url')
+    username = ReadConfig.get_config_value('basic access data', 'username')
+    password = ReadConfig.get_config_value('basic access data', 'password')
 
     # logger = LogGeneration.log_gen()
     logger = CustomLogger.configure_logger(__name__, level=logging.INFO)
@@ -25,7 +25,7 @@ class TestLogin:
         self.driver = driver_setup
         self.driver.get(self.base_url)
 
-        expected_result = title.HOME_PAGE
+        expected_result = Titles.HOME_PAGE
         actual_result = self.driver.title
 
         if actual_result == expected_result:
@@ -49,7 +49,7 @@ class TestLogin:
         self.login_page.set_password(self.password)
         self.login_page.click_login_button()
 
-        expected_result = title.DASHBOARD
+        expected_result = Titles.DASHBOARD
         actual_result = self.driver.title
 
         if actual_result == expected_result:

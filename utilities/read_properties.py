@@ -8,16 +8,6 @@ config.read(Path.get_relative_path('configurations', 'config.ini'))
 
 class ReadConfig:
     @staticmethod
-    def get_url():
-        url = config.get('basic access data', 'base_url')
-        return url
-
-    @staticmethod
-    def get_username():
-        username = config.get('basic access data', 'username')
-        return username
-
-    @staticmethod
-    def get_password():
-        password = config.get('basic access data', 'password')
-        return password
+    def get_config_value(section, option):
+        config_value = config.get(section, option)
+        return config_value
