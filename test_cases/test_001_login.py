@@ -5,6 +5,7 @@ from page_objects.login_page import LoginPage
 from utilities.read_properties import ReadConfig
 from utilities.custom_logger import custom_logger
 from utilities.media_manager import MediaManager
+from utilities.constants import PageTitles as title
 
 
 class TestLogin:
@@ -24,10 +25,10 @@ class TestLogin:
         self.driver = driver_setup
         self.driver.get(self.base_url)
 
-        expected_title = "Your store. Login"
-        actual_title = self.driver.title
+        expected_result = title.HOME_PAGE
+        actual_result = self.driver.title
 
-        if actual_title == expected_title:
+        if actual_result == expected_result:
             self.logger.info('Test_001: Home Page Title == PASSED')
             assert True
 
@@ -48,10 +49,10 @@ class TestLogin:
         self.login_page.set_password(self.password)
         self.login_page.click_login_button()
 
-        expected_title = "Dashboard / nopCommerce administration"
-        actual_title = self.driver.title
+        expected_result = title.DASHBOARD
+        actual_result = self.driver.title
 
-        if actual_title == expected_title:
+        if actual_result == expected_result:
             self.logger.info('Test_001: Login == PASSED')
             assert True
 
