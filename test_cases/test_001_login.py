@@ -3,7 +3,7 @@ import pytest
 from selenium.webdriver.support.ui import WebDriverWait
 from page_objects.login_page import LoginPage
 from utilities.read_properties import ReadConfig
-from utilities.custom_logger import custom_logger
+from utilities.custom_logger import CustomLogger
 from utilities.screen_cap_manager import ScreenCapture
 from utilities.constants import PageTitles as title
 
@@ -14,7 +14,7 @@ class TestLogin:
     password = ReadConfig.get_password()
 
     # logger = LogGeneration.log_gen()
-    logger = custom_logger.configure_logger(__name__, level=logging.INFO)
+    logger = CustomLogger.configure_logger(__name__, level=logging.INFO)
 
     @pytest.mark.test_id_001_01
     @pytest.mark.parametrize("browser", ["chrome", "edge"])
