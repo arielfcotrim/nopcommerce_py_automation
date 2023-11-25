@@ -15,6 +15,8 @@ class TestLogin:
     # logger = LogGeneration.log_gen()
     logger = custom_logger.configure_logger(__name__, level=logging.INFO)
 
+    @pytest.mark.test_id_001_01
+    @pytest.mark.parametrize("browser", ["chrome", "edge"])
     def test_home_page_title(self, driver_setup):
         self.logger.info('**** Test_001_Login ****')
         self.logger.info('Verifying Home Page Title')
