@@ -4,7 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from page_objects.login_page import LoginPage
 from utilities.read_properties import ReadConfig
 from utilities.custom_logger import custom_logger
-from utilities.media_manager import MediaManager
+from utilities.screen_cap_manager import ScreenCapture
 from utilities.constants import PageTitles as title
 
 
@@ -33,7 +33,7 @@ class TestLogin:
             assert True
 
         else:
-            MediaManager.save_screenshot(self.driver, 'test_home_page_title')
+            ScreenCapture.save_screenshot(self.driver, 'test_home_page_title')
             self.logger.error('Test_001: Home Page Title == FAILED')
             assert False
 
@@ -57,6 +57,6 @@ class TestLogin:
             assert True
 
         else:
-            MediaManager.save_screenshot(self.driver, 'test_log_in')
+            ScreenCapture.save_screenshot(self.driver, 'test_log_in')
             self.logger.error('Test_001: Login == FAILED')
             assert False
