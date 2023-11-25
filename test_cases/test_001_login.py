@@ -17,7 +17,8 @@ class TestLogin:
 
     @pytest.mark.test_id_001_01
     @pytest.mark.parametrize("browser", ["chrome", "edge"])
-    def test_home_page_title(self, driver_setup):
+    def test_home_page_title(self, driver_setup, browser):
+        print()
         self.logger.info('**** Test_001_Login ****')
         self.logger.info('Verifying Home Page Title')
         self.driver = driver_setup
