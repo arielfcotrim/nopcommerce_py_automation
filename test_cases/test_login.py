@@ -17,14 +17,18 @@ class TestLogin:
     # Configure the logger for this test class
     logger = CustomLogger.configure_logger(__name__, level=logging.INFO)
 
-    @pytest.mark.test_id_001_01
+    @pytest.mark.test_id_001
     @pytest.mark.parametrize("browser", ["chrome", "edge"])
     def test_home_page_title(self, driver_setup, browser):
+        # Declare variables to store information about the test case
+        tc_id = 'tc_001'
+        tc_name = 'test_home_page_title'
+
         # skip line for improved readability in the console output
         print()
         # Log the start of the test
-        self.logger.info('**** Test_001_Login ****')
-        self.logger.info('Verifying Home Page Title')
+        self.logger.info(f'**** {tc_id}: {tc_name} ****')
+        self.logger.info(f'Browser: {browser}')
 
         # Initialize the WebDriver and open the base URL
         self.driver = driver_setup
@@ -36,19 +40,26 @@ class TestLogin:
 
         # Assert and log the result
         if actual_result == expected_result:
-            self.logger.info('Test_001: Home Page Title == PASSED')
+            self.logger.info(f'{tc_id} == PASSED')
             assert True
 
         else:
-            ScreenCapture.save_screenshot(self.driver, 'test_home_page_title')
-            self.logger.error('Test_001: Home Page Title == FAILED')
+            ScreenCapture.save_screenshot(self.driver, f'{tc_id}_{tc_name}')
+            self.logger.error(f'{tc_id} == FAILED')
             assert False
 
-    def test_log_in(self, driver_setup):
+    @pytest.mark.test_id_002
+    @pytest.mark.parametrize("browser", ["chrome", "edge"])
+    def test_log_in(self, driver_setup, browser):
+        # Declare variables to store information about the test case
+        tc_id = 'tc_002'
+        tc_name = 'test_log_in'
+
         # skip line for improved readability in the console output
         print()
         # Log the start of the test
-        self.logger.info('Attempting to Log-in...')
+        self.logger.info(f'**** {tc_id}: {tc_name} ****')
+        self.logger.info(f'Browser: {browser}')
 
         # Initialize the WebDriver and open the base URL
         self.driver = driver_setup
@@ -66,10 +77,10 @@ class TestLogin:
 
         # Assert and log the result
         if actual_result == expected_result:
-            self.logger.info('Test_001: Login == PASSED')
+            self.logger.info(f'{tc_id} == PASSED')
             assert True
 
         else:
-            ScreenCapture.save_screenshot(self.driver, 'test_log_in')
-            self.logger.error('Test_001: Login == FAILED')
+            ScreenCapture.save_screenshot(self.driver, f'{tc_id}_{tc_name}')
+            self.logger.error(f'{tc_id} == FAILED')
             assert False
