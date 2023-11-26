@@ -48,3 +48,36 @@ def driver_setup(browser):
         driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
         yield driver
         driver.quit()
+
+
+# PyTest HTML Report
+def pytest_configure(config):
+    """
+    A hook for adding or modifying pytest configuration settings.
+    This is invoked for every test session.
+
+    :param config: The pytest config object, which contains settings and options.
+    """
+    if hasattr(config, '_metadata'):
+        # Check if the config object already has a '_metadata' attribute
+        # If it does, update it with project-specific information
+        config._metadata['Project Name'] = 'NOP Commerce'
+        config._metadata['Module Name'] = 'Customers'
+        config._metadata['Tester'] = 'Ariel'
+    else:
+        # If the '_metadata' attribute does not exist, create it
+        # and initialize it with project-specific information
+        config._metadata = {'Project Name': 'NOP Commerce', 'Module Name': 'Customers', 'Tester': 'Ariel'}
+
+
+@pytest.mark.optionalhook
+def pytest_metadata(metadata):
+    """
+    An optional hook for modifying metadata for the test report.
+    This is useful for removing or altering information that will appear in the report.
+
+    :param metadata: A dictionary containing metadata information.
+    """
+    # Remove certain metadata entries that are not needed or should not be displayed in the report
+    metadata.pop('JAVA HOME', None)     # Remove JAVA HOME information if it exists
+    metadata.pop('Plugins', None)       # Remove Plugins information if it exists
