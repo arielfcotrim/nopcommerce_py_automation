@@ -2,7 +2,7 @@ import logging
 import pytest
 from selenium.webdriver.support.ui import WebDriverWait
 from page_objects.login_page import LoginPage
-from utilities.read_properties import ReadConfig
+from utilities.config_parser import ReadConfig
 from utilities.custom_logger import CustomLogger
 from utilities.screen_cap_manager import ScreenCapture
 from utilities.constants import PageTitles as Titles
