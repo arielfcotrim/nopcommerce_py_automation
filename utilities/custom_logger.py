@@ -5,7 +5,16 @@ from utilities.dir_path_manager import DirPathManager as Path
 class CustomLogger:
     @staticmethod
     def configure_logger(name, level=logging.INFO):
-        """ Configure and return a logger with the given name and level. """
+        """
+        Configure and return a logger with the given name and level.
+
+        This method creates a logger with two handlers: one for console output
+        and another for file output.
+
+        :param name: The name of the logger.
+        :param level: The logging level. Defaults to logging.INFO.
+        :return: Configured logger instance.
+        """
         # Create a custom logger
         logger = logging.getLogger(name)
 
