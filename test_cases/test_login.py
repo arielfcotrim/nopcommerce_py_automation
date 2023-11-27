@@ -19,15 +19,12 @@ class TestLogin:
     @pytest.mark.test_id_001
     @pytest.mark.parametrize("browser", ["chrome", "edge"])
     def test_home_page_title(self, driver_setup, browser):
-        # Declare variables to store information about the test case
-        tc_id = 'tc_001'
-        tc_name = 'test_home_page_title'
+        # # Declare variables to store information about the test case
+        test_case_id = 'tc_001'
+        test_case_name = 'test_home_page_title'
 
-        # skip line for improved readability in the console output
-        print()
-        # Log the start of the test
-        self.logger.info(f'**** {tc_id}: {tc_name} ****')
-        self.logger.info(f'Browser: {browser}')
+        # Call static method to log the start of the test case
+        CustomLogger.log_test_start(self.logger, test_case_id, test_case_name, browser)
 
         # Initialize the WebDriver and open the base URL
         self.driver = driver_setup
@@ -39,12 +36,12 @@ class TestLogin:
 
         # Assert and log the result
         if actual_result == expected_result:
-            self.logger.info(f'{tc_id} == PASSED')
+            CustomLogger.log_test_result(self.logger, test_case_id, 'PASSED')
             assert True
 
         else:
-            ScreenCapture.save_screenshot(self.driver, f'{tc_id}_{tc_name}')
-            self.logger.error(f'{tc_id} == FAILED')
+            ScreenCapture.save_screenshot(self.driver, f'{test_case_id}_{test_case_name}')
+            CustomLogger.log_test_result(self.logger, test_case_id, 'FAILED')
             assert False
 
     @pytest.mark.test_id_002

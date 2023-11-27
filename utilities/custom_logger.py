@@ -45,3 +45,33 @@ class CustomLogger:
             logger.addHandler(file_handler)
 
         return logger
+
+    @staticmethod
+    def log_test_start(logger, test_case_id, test_case_name, browser):
+        """
+        Log the start of a test case.
+        :param logger: The logger instance.
+        :param test_case_id: The ID of the test case.
+        :param test_case_name: The name of the test case.
+        :param browser: The name of the browser.
+        :return: None
+        """
+        # skip line for improved readability in the console output
+        print()
+
+        logger.info(f'**** {test_case_id}: {test_case_name} ****')
+        logger.info(f'Browser: {browser}')
+
+    @staticmethod
+    def log_test_result(logger, test_case_id, status):
+        """
+        Log the result of a test case.
+        :param logger: The logger instance.
+        :param test_case_id: The ID of the test case.
+        :param status: The result of the test case.
+        :return: None
+        """
+        # skip line for improved readability in the console output
+        print()
+
+        logger.info(f'{test_case_id} == {status}')
