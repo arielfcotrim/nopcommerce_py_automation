@@ -1,6 +1,5 @@
 import logging
 import pytest
-from selenium.webdriver.support.ui import WebDriverWait
 from page_objects.login_page import LoginPage
 from utilities.config_parser import ReadConfig
 from utilities.custom_logger import CustomLogger
