@@ -2,7 +2,7 @@ import logging
 import pytest
 from page_objects.login_page import LoginPage
 from utilities.config_parser import ReadConfig
-from utilities.custom_logger import CustomLogger
+from utilities.custom_logs import CustomLogs
 from utilities.screen_cap_manager import ScreenCapture
 from utilities.constants import PageTitles as Titles
 
@@ -14,7 +14,7 @@ class TestLogin:
     password = ReadConfig.get_config_value('basic access data', 'password')
 
     # Configure the logger for this test class
-    logger = CustomLogger.configure_logger(__name__, level=logging.INFO)
+    logger = CustomLogs.configure_logger(__name__, level=logging.INFO)
 
     @pytest.mark.test_id_001
     @pytest.mark.parametrize("browser", ["chrome", "edge"])
@@ -24,7 +24,7 @@ class TestLogin:
         test_case_name = 'test_home_page_title'
 
         # Call static method to log the start of the test case
-        CustomLogger.log_test_start(self.logger, test_case_id, test_case_name, browser)
+        CustomLogs.log_test_start(self.logger, test_case_id, test_case_name, browser)
 
         # Initialize the WebDriver and open the base URL
         self.driver = driver_setup
@@ -36,26 +36,23 @@ class TestLogin:
 
         # Assert and log the result
         if actual_result == expected_result:
-            CustomLogger.log_test_result(self.logger, test_case_id, 'PASSED')
+            CustomLogs.log_test_result(self.logger, test_case_id, 'PASSED')
             assert True
 
         else:
             ScreenCapture.save_screenshot(self.driver, f'{test_case_id}_{test_case_name}')
-            CustomLogger.log_test_result(self.logger, test_case_id, 'FAILED')
+            CustomLogs.log_test_result(self.logger, test_case_id, 'FAILED')
             assert False
 
     @pytest.mark.test_id_002
     @pytest.mark.parametrize("browser", ["chrome", "edge"])
     def test_log_in(self, driver_setup, browser):
         # Declare variables to store information about the test case
-        tc_id = 'tc_002'
-        tc_name = 'test_log_in'
+        test_case_id = 'tc_002'
+        test_case_name = 'test_log_in'
 
-        # skip line for improved readability in the console output
-        print()
-        # Log the start of the test
-        self.logger.info(f'**** {tc_id}: {tc_name} ****')
-        self.logger.info(f'Browser: {browser}')
+        # Call static method to log the start of the test case
+        CustomLogs.log_test_start(self.logger, test_case_id, test_case_name, browser)
 
         # Initialize the WebDriver and open the base URL
         self.driver = driver_setup
@@ -73,10 +70,10 @@ class TestLogin:
 
         # Assert and log the result
         if actual_result == expected_result:
-            self.logger.info(f'{tc_id} == PASSED')
+            CustomLogs.log_test_result(self.logger, test_case_id, 'PASSED')
             assert True
 
         else:
-            ScreenCapture.save_screenshot(self.driver, f'{tc_id}_{tc_name}')
-            self.logger.error(f'{tc_id} == FAILED')
+            ScreenCapture.save_screenshot(self.driver, f'{test_case_id}_{test_case_name}')
+            CustomLogs.log_test_result(self.logger, test_case_id, 'FAILED')
             assert False
