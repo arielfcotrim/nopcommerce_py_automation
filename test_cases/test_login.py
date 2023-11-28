@@ -1,7 +1,7 @@
 import logging
 import pytest
 from page_objects.login_page import LoginPage
-from utilities.config_parser import ReadConfig
+from utilities.config_reader import ConfigReader
 from utilities.custom_logs import CustomLogs
 from utilities.screen_cap_manager import ScreenCapture
 from utilities.constants import PageTitles as Titles
@@ -9,9 +9,9 @@ from utilities.constants import PageTitles as Titles
 
 class TestLogin:
     # Retrieve configuration values such as URL, username, and password
-    base_url = ReadConfig.get_config_value('basic access data', 'base_url')
-    username = ReadConfig.get_config_value('basic access data', 'username')
-    password = ReadConfig.get_config_value('basic access data', 'password')
+    base_url = ConfigReader.get_config_value('basic access data', 'base_url')
+    username = ConfigReader.get_config_value('basic access data', 'username')
+    password = ConfigReader.get_config_value('basic access data', 'password')
 
     # Configure the logger for this test class
     logger = CustomLogs.configure_logger(__name__, level=logging.INFO)

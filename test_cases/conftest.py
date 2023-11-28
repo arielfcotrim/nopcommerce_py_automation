@@ -7,6 +7,10 @@ from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.edge.service import Service as EdgeService
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 
+import configparser
+from utilities.config_reader import ConfigReader
+from utilities.dir_path_manager import DirPathManager
+
 
 def pytest_addoption(parser):
     """
@@ -52,32 +56,31 @@ def driver_setup(browser):
 
 # PyTest HTML Report
 def pytest_configure(config):
-    """
-    A hook for adding or modifying pytest configuration settings.
-    This is invoked for every test session.
+    # Read from config.ini
+    config_parser = configparser.ConfigParser()
+    config_parser.read(DirPathManager.get_relative_path('configurations', 'config.ini'))
+    ConfigReader.get_config_value(section='test metadata', option='project_name')
+    project_name = config_parser.get('test metadata', 'project_name')
+    module_name = config_parser.get('test metadata', 'module_name')
+    tester_name = config_parser.get('test metadata', 'tester_name')
 
-    :param config: The pytest config object, which contains settings and options.
-    """
-    if hasattr(config, '_metadata'):
-        # Check if the config object already has a '_metadata' attribute
-        # If it does, update it with project-specific information
-        config._metadata['Project Name'] = 'NOP Commerce'
-        config._metadata['Module Name'] = 'Customers'
-        config._metadata['Tester'] = 'Ariel'
-    else:
-        # If the '_metadata' attribute does not exist, create it
-        # and initialize it with project-specific information
-        config._metadata = {'Project Name': 'NOP Commerce', 'Module Name': 'Customers', 'Tester': 'Ariel'}
+    # Set Metadata
+    # Check if the metadata dictionary exists, if not, create it
+    if not hasattr(config, 'metadata'):
+        config.metadata = {}
+    config.metadata['Project Name'] = project_name
+    config.metadata['Module Name'] = module_name
+    config.metadata['Tester Name'] = tester_name
 
 
-@pytest.mark.optionalhook
-def pytest_metadata(metadata):
-    """
-    An optional hook for modifying metadata for the test report.
-    This is useful for removing or altering information that will appear in the report.
-
-    :param metadata: A dictionary containing metadata information.
-    """
-    # Remove certain metadata entries that are not needed or should not be displayed in the report
-    metadata.pop('JAVA HOME', None)     # Remove JAVA HOME information if it exists
-    metadata.pop('Plugins', None)       # Remove Plugins information if it exists
+# @pytest.mark.optionalhook
+# def pytest_metadata(metadata):
+#     """
+#     An optional hook for modifying metadata for the test report.
+#     This is useful for removing or altering information that will appear in the report.
+#
+#     :param metadata: A dictionary containing metadata information.
+#     """
+#     # Remove certain metadata entries that are not needed or should not be displayed in the report
+#     metadata.pop('JAVA HOME', None)     # Remove JAVA HOME information if it exists
+#     metadata.pop('Plugins', None)       # Remove Plugins information if it exists

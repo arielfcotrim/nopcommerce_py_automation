@@ -9,7 +9,7 @@ config = configparser.RawConfigParser()
 config.read(Path.get_relative_path('configurations', 'config.ini'))
 
 
-class ReadConfig:
+class ConfigReader:
     @staticmethod
     def get_config_value(section, option):
         """
