@@ -73,17 +73,6 @@ def pytest_configure(config):
     config.stash[metadata_key]['Project Name'] = project_name
     config.stash[metadata_key]['Module Name'] = module_name
     config.stash[metadata_key]['Tester Name'] = tester_name
-    # config._metadata['Project Name'] = project_name
-    # config._metadata['Module Name'] = module_name
-    # config._metadata['Tester Name'] = tester_name
-
-    # Set Metadata
-    # Check if the metadata dictionary exists, if not, create it
-    # if not hasattr(config, 'metadata'):
-    #     config.metadata = {}
-    # config.metadata['Project Name'] = project_name
-    # config.metadata['Module Name'] = module_name
-    # config.metadata['Tester Name'] = tester_name
 
 
 @pytest.mark.optionalhook
