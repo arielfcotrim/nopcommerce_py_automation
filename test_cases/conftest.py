@@ -86,3 +86,6 @@ def pytest_metadata(metadata):
     # Remove certain metadata entries that are not needed or should not be displayed in the report
     metadata.pop('JAVA HOME', None)     # Remove JAVA HOME information if it exists
     metadata.pop('Plugins', None)       # Remove Plugins information if it exists
+
+# add expected and actual page titles to the metadata dictionary
+# add screen capture to the metadata dictionary
