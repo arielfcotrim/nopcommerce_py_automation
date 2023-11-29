@@ -63,15 +63,19 @@ class CustomLogs:
         logger.info(f'Browser: {browser}')
 
     @staticmethod
-    def log_test_result(logger, test_case_id, status):
+    def log_test_result(logger, test_case_id, status, expected_result, actual_result):
         """
         Log the result of a test case.
+        :param expected_result:
+        :param actual_result:
         :param logger: The logger instance.
-        :param test_case_id: The ID of the test case.
-        :param status: The result of the test case.
+        :param test_case_id:
+        :param status: The result (PASS/FAIL/SKIPPED/BLOCKED) of the test case.
         :return: None
         """
         # skip line for improved readability in the console output
         print()
 
         logger.info(f'{test_case_id} == {status}')
+        logger.info(f'Expected result: {expected_result}')
+        logger.info(f'Actual result: {actual_result}')

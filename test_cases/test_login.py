@@ -39,12 +39,18 @@ class TestLogin:
 
         # Assert and log the result
         if actual_result == expected_result:
-            CustomLogs.log_test_result(self.logger, test_case_id, 'PASSED')
+            CustomLogs.log_test_result(
+                self.logger, test_case_id, 'PASSED',
+                expected_result=expected_result, actual_result=actual_result
+            )
             assert True
 
         else:
             ScreenCapture.save_screenshot(self.driver, f'{test_case_id}_{test_case_name}')
-            CustomLogs.log_test_result(self.logger, test_case_id, 'FAILED')
+            CustomLogs.log_test_result(
+                self.logger, test_case_id, 'FAILED',
+                expected_result=expected_result, actual_result=actual_result
+            )
             assert False
 
     @pytest.mark.test_id_002
@@ -73,10 +79,16 @@ class TestLogin:
 
         # Assert and log the result
         if actual_result == expected_result:
-            CustomLogs.log_test_result(self.logger, test_case_id, 'PASSED')
+            CustomLogs.log_test_result(
+                self.logger, test_case_id, 'PASSED',
+                expected_result=expected_result, actual_result=actual_result
+            )
             assert True
 
         else:
             ScreenCapture.save_screenshot(self.driver, f'{test_case_id}_{test_case_name}')
-            CustomLogs.log_test_result(self.logger, test_case_id, 'FAILED')
+            CustomLogs.log_test_result(
+                self.logger, test_case_id, 'FAILED',
+                expected_result=expected_result, actual_result=actual_result
+            )
             assert False
