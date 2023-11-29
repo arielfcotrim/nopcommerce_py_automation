@@ -8,10 +8,13 @@ from utilities.constants import PageTitles as Titles
 
 
 class TestLogin:
+    # Instantiate a ConfigReader instance to access configuration settings
+    parse_configs = ConfigReader('configurations', 'config.ini')
+
     # Retrieve configuration values such as URL, username, and password
-    base_url = ConfigReader.get_config_value('basic access data', 'base_url')
-    username = ConfigReader.get_config_value('basic access data', 'username')
-    password = ConfigReader.get_config_value('basic access data', 'password')
+    base_url = parse_configs.get_config_value('basic access data', 'base_url')
+    username = parse_configs.get_config_value('basic access data', 'username')
+    password = parse_configs.get_config_value('basic access data', 'password')
 
     # Configure the logger for this test class
     logger = CustomLogs.configure_logger(__name__, level=logging.INFO)

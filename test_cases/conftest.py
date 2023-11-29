@@ -7,9 +7,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.edge.service import Service as EdgeService
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 
-import configparser
 from utilities.config_reader import ConfigReader
-from utilities.dir_path_manager import DirPathManager
 
 
 def pytest_addoption(parser):
@@ -56,13 +54,12 @@ def driver_setup(browser):
 
 # PyTest HTML Report
 def pytest_configure(config):
-    # Read from config.ini
-    config_parser = configparser.ConfigParser()
-    config_parser.read(DirPathManager.get_relative_path('configurations', 'config.ini'))
-    ConfigReader.get_config_value(section='test metadata', option='project_name')
-    project_name = config_parser.get('test metadata', 'project_name')
-    module_name = config_parser.get('test metadata', 'module_name')
-    tester_name = config_parser.get('test metadata', 'tester_name')
+    # Create an instance of ConfigReader for the config.ini file
+    parse_configs = ConfigReader('configurations', 'config.ini')
+    # Retrieve the values from the config file
+    project_name = parse_configs.get_config_value(section='test metadata', option='project_name')
+    module_name = parse_configs.get_config_value(section='test metadata', option='module_name')
+    tester_name = parse_configs.get_config_value(section='test metadata', option='tester_name')
 
     # Set Metadata
     # Check if the metadata dictionary exists, if not, create it
@@ -73,14 +70,14 @@ def pytest_configure(config):
     config.metadata['Tester Name'] = tester_name
 
 
-# @pytest.mark.optionalhook
-# def pytest_metadata(metadata):
-#     """
-#     An optional hook for modifying metadata for the test report.
-#     This is useful for removing or altering information that will appear in the report.
-#
-#     :param metadata: A dictionary containing metadata information.
-#     """
-#     # Remove certain metadata entries that are not needed or should not be displayed in the report
-#     metadata.pop('JAVA HOME', None)     # Remove JAVA HOME information if it exists
-#     metadata.pop('Plugins', None)       # Remove Plugins information if it exists
+@pytest.mark.optionalhook
+def pytest_metadata(metadata):
+    """
+    An optional hook for modifying metadata for the test report.
+    This is useful for removing or altering information that will appear in the report.
+
+    :param metadata: A dictionary containing metadata information.
+    """
+    # Remove certain metadata entries that are not needed or should not be displayed in the report
+    metadata.pop('JAVA HOME', None)     # Remove JAVA HOME information if it exists
+    metadata.pop('Plugins', None)       # Remove Plugins information if it exists

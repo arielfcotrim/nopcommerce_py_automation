@@ -2,16 +2,19 @@ import configparser
 from utilities.dir_path_manager import DirPathManager as Path
 
 
-# Initialize a RawConfigParser instance
-config = configparser.RawConfigParser()
-
-# Read the configuration file using a relative path
-config.read(Path.get_relative_path('configurations', 'config.ini'))
-
-
 class ConfigReader:
-    @staticmethod
-    def get_config_value(section, option):
+    def __init__(self, directory_name, file_name):
+        """
+        Initialize a RawConfigParser instance.
+        :param directory_name:
+        :param file_name:
+        """
+        self.my_config = configparser.RawConfigParser()
+
+        # Read the configuration file using a relative path
+        self.my_config.read(Path.get_relative_path(directory_name, file_name))
+
+    def get_config_value(self, section, option):
         """
         Retrieve a specific configuration value from the config file.
 
@@ -20,5 +23,6 @@ class ConfigReader:
         :return: Value of the specified option from the specified section.
         """
         # Fetch the value from the specified section and option
-        config_value = config.get(section, option)
+        config_value = self.my_config.get(section, option)
+
         return config_value
