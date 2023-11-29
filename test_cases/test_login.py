@@ -20,7 +20,7 @@ class TestLogin:
     logger = CustomLogs.configure_logger(__name__, level=logging.INFO)
 
     @pytest.mark.test_id_001
-    @pytest.mark.parametrize("browser", ["chrome", "edge"])
+    # @pytest.mark.parametrize("browser", ["chrome", "edge"])
     def test_home_page_title(self, driver_setup, browser):
         # # Declare variables to store information about the test case
         test_case_id = 'tc_001'
@@ -48,7 +48,7 @@ class TestLogin:
             assert False
 
     @pytest.mark.test_id_002
-    @pytest.mark.parametrize("browser", ["chrome", "edge"])
+    # @pytest.mark.parametrize("browser", ["chrome", "edge"])
     def test_log_in(self, driver_setup, browser):
         # Declare variables to store information about the test case
         test_case_id = 'tc_002'

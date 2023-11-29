@@ -54,20 +54,36 @@ def driver_setup(browser):
 
 # PyTest HTML Report
 def pytest_configure(config):
+    # Access the metadata plugin
+    metadata = config.pluginmanager.getplugin('metadata')
+
+    # Check if the metadata plugin exists, if not, create it
+    if metadata:
+        from pytest_metadata.plugin import metadata_key
+
     # Create an instance of ConfigReader for the config.ini file
     parse_configs = ConfigReader('configurations', 'config.ini')
+
     # Retrieve the values from the config file
     project_name = parse_configs.get_config_value(section='test metadata', option='project_name')
     module_name = parse_configs.get_config_value(section='test metadata', option='module_name')
     tester_name = parse_configs.get_config_value(section='test metadata', option='tester_name')
 
+    # Add the metadata to the metadata dictionary
+    config.stash[metadata_key]['Project Name'] = project_name
+    config.stash[metadata_key]['Module Name'] = module_name
+    config.stash[metadata_key]['Tester Name'] = tester_name
+    # config._metadata['Project Name'] = project_name
+    # config._metadata['Module Name'] = module_name
+    # config._metadata['Tester Name'] = tester_name
+
     # Set Metadata
     # Check if the metadata dictionary exists, if not, create it
-    if not hasattr(config, 'metadata'):
-        config.metadata = {}
-    config.metadata['Project Name'] = project_name
-    config.metadata['Module Name'] = module_name
-    config.metadata['Tester Name'] = tester_name
+    # if not hasattr(config, 'metadata'):
+    #     config.metadata = {}
+    # config.metadata['Project Name'] = project_name
+    # config.metadata['Module Name'] = module_name
+    # config.metadata['Tester Name'] = tester_name
 
 
 @pytest.mark.optionalhook
