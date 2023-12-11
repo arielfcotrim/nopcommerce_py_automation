@@ -4,6 +4,7 @@ from utilities.config_reader import ConfigReader
 from utilities.custom_logs import CustomLogs
 from utilities.dir_path_manager import DirPathManager as Path
 from utilities import excel_utilities as excel
+from utilities.constants import PageTitles as Title
 
 
 class Test002LoginDDT:
@@ -49,7 +50,7 @@ class Test002LoginDDT:
             self.login_page.click_login_button()
 
             # Declare variables to store the expected and actual page titles
-            expected_result = 'Dashboard / nopCommerce administration'
+            expected_result = Title.DASHBOARD
             actual_result = self.driver.title
 
             if actual_result == expected_result:
