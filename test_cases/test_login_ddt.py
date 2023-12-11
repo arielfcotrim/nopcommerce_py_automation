@@ -3,10 +3,7 @@ from page_objects.login_page import LoginPage
 from utilities.config_reader import ConfigReader
 from utilities.custom_logs import CustomLogs
 from utilities.dir_path_manager import DirPathManager as Path
-from utilities import excel_utilities as Excel
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from utilities import excel_utilities as excel
 
 
 class Test002LoginDDT:
@@ -39,13 +36,13 @@ class Test002LoginDDT:
         self.login_page = LoginPage(self.driver)
 
         # Call the set_username method to enter the username
-        self.rows = Excel.get_row_count(self.data_file, 'Sheet1')
+        self.rows = excel.get_row_count(self.data_file, 'Sheet1')
 
         list_status = []  # Empty list to append the results of each iteration
         for row in range(2, self.rows + 1):
-            self.username = Excel.read_data(self.data_file, 'Sheet1', row, 1)
-            self.password = Excel.read_data(self.data_file, 'Sheet1', row, 2)
-            self.expected_result = Excel.read_data(self.data_file, 'Sheet1', row, 3)
+            self.username = excel.read_data(self.data_file, 'Sheet1', row, 1)
+            self.password = excel.read_data(self.data_file, 'Sheet1', row, 2)
+            self.expected_result = excel.read_data(self.data_file, 'Sheet1', row, 3)
 
             self.login_page.set_username(self.username)
             self.login_page.set_password(self.password)
